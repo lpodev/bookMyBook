@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="inside_margin">16dp</dimen>
+    <dimen name="card_buttons">20dp</dimen>
+    <dimen name="space_between_cardviews">20dp</dimen>
+</resources>

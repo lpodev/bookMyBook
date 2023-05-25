@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Book My Book</string>
+    <string name="home">Home</string>
+    <string name="scan">Scanner</string>
+    <string name="books">Livres</string>
+    <string name="find_book">Trouver un livre</string>
+    <string name="lend">Prêter</string>
+    <string name="borrow">Emprunter</string>
+</resources>
