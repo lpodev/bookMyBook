@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Book My Book</string>
-    <string name="home">Home</string>
-    <string name="scan">Scanner</string>
+    <string name="hello">Bonjour</string>
+    <string name="your_loans">Vos prêts</string>
+    <string name="scan">Scan</string>
     <string name="books">Livres</string>
-    <string name="find_book">Trouver un livre</string>
-    <string name="lend">Prêter</string>
-    <string name="borrow">Emprunter</string>
-    <string name="book_title">Book Title</string>
-    <string name="book_author">Book author</string>
+    <string name="home">Home</string>
+    <string name="search">Chercher</string>
     <string name="cover">Cover</string>
+    <string name="title_place_holder">Title Place Holder</string>
+    <string name="author_place_holder">Author Place Holder</string>
 </resources>
