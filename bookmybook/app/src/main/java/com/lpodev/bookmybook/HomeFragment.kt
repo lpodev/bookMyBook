@@ -1,28 +1,44 @@
 package com.lpodev.bookmybook
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lpodev.bookmybook.databinding.HomepageBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.lpodev.bookmybook.databinding.FragmentHomeBinding
 
-class HomePage : AppCompatActivity()
-{
-    private lateinit var binding: HomepageBinding
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var adapter: CardAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = HomepageBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setSupportActionBar(findViewById(R.id.toolbar))
+    private var isBooksPopulated = false
 
-        populateBook()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val mainActivity = this
-        binding.loansRecyclerView.apply {
-            layoutManager = LinearLayoutManager(mainActivity)
-            adapter = CardAdapter(bookList)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (!isBooksPopulated) {
+            populateBook()
+            isBooksPopulated = true
         }
+
+        adapter = CardAdapter(bookList)
+        binding.loansRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@HomeFragment.adapter
+        }
+
+
     }
 
     private fun populateBook() {
