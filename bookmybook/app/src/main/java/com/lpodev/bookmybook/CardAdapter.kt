@@ -3,6 +3,7 @@ package com.lpodev.bookmybook
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.lpodev.bookmybook.data.Book
 import com.lpodev.bookmybook.databinding.CardCellBinding
 
 class CardAdapter( private val books: List<Book>)

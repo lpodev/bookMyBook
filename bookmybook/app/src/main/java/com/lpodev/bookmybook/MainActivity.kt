@@ -3,14 +3,13 @@ package com.lpodev.bookmybook
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.NavHostFragment
+import androidx.room.Room
+import com.lpodev.bookmybook.data.BookDatabase
 import com.lpodev.bookmybook.databinding.ActivityMainBinding
-
-class MainActivity : AppCompatActivity()
-{
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-    private fun replaceFragment(fragment : Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager;
         val fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
@@ -22,16 +21,20 @@ class MainActivity : AppCompatActivity()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(findViewById(R.id.toolbar))
-        replaceFragment(HomeFragment())
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        val db = Room.databaseBuilder(
+            applicationContext,
+            BookDatabase::class.java, "bookMyBook"
+        ).build()
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.navigation_home -> replaceFragment(HomeFragment())
-                R.id.navigation_scan -> replaceFragment(ScanFragment())
-                R.id.navigation_search -> replaceFragment(SearchFragment())
-                else -> {
-
-                }
+                R.id.navigation_home -> navController.navigate(R.id.listFragment)
+                R.id.navigation_scan -> navController.navigate(R.id.scanFragment)
+                R.id.navigation_search -> navController.navigate(R.id.searchFragment)
             }
             true
         }

@@ -9,6 +9,9 @@
     <string name="cover">Cover</string>
     <string name="title_place_holder">Title Place Holder</string>
     <string name="author_place_holder">Author Place Holder</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="isbn_form_hint">ISBN</string>
+    <string name="author_form_hint">Auteur</string>
+    <string name="title_form_hint">Titre</string>
+    <string name="add_book_fb">Ajouter un livre</string>
+    <string name="save_form_button">Enregistrer</string>
 </resources>
