@@ -17,8 +17,8 @@ class SearchFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
-        val addButton = view.findViewById<FloatingActionButton>(R.id.add_btn)
-        addButton.setOnClickListener {
+        val floatingActionButton = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_searchFragment_to_addBookFragment)
         }
 

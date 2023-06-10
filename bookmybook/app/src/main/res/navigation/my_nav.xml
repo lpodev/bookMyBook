@@ -27,7 +27,7 @@
         android:id="@+id/listFragment"
         android:name="com.lpodev.bookmybook.fragments.list.ListFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_searchFragment2"
             app:destination="@id/searchFragment" />

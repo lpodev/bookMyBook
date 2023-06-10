@@ -1,4 +1,4 @@
-package com.lpodev.bookmybook
+package com.lpodev.bookmybook.fragments.list
 
 import androidx.recyclerview.widget.RecyclerView
 import com.lpodev.bookmybook.data.Book
