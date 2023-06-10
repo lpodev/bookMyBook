@@ -10,4 +10,8 @@ class BookRepository(private val bookDao: BookDao) {
         bookDao.addBook(book)
     }
 
+    fun searchBook(searchQuery: String) : LiveData<List<Book>> {
+        return bookDao.searchBook(searchQuery)
+    }
+
 }
