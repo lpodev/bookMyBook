@@ -20,7 +20,7 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false) 
 
         val floatingActionButton = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
         floatingActionButton.setOnClickListener {

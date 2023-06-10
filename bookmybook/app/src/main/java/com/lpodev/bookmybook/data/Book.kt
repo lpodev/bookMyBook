@@ -1,5 +1,6 @@
 package com.lpodev.bookmybook.data
 
+import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -7,8 +8,8 @@ import androidx.room.PrimaryKey
 data class Book(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val cover: String?,
-    val title: String?,
-    val author: String?,
-    val isbn: String?
+    val cover: Bitmap,
+    val title: String,
+    val author: String,
+    val isbn: String
 )

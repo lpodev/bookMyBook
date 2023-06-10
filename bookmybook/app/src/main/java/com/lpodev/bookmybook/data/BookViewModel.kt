@@ -12,7 +12,7 @@ class BookViewModel(application : Application) : AndroidViewModel(application) {
     private val repository: BookRepository
 
     init {
-        val bookDao = BookDatabase.getDatabase(application).bookDao()
+        val bookDao = BookMyBookDatabase.getDatabase(application).bookDao()
         repository = BookRepository(bookDao)
         readAllData = repository.readAllData
     }

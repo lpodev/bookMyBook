@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.room.Room
-import com.lpodev.bookmybook.data.BookDatabase
+import com.lpodev.bookmybook.data.BookMyBookDatabase
 import com.lpodev.bookmybook.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val db = Room.databaseBuilder(
             applicationContext,
-            BookDatabase::class.java, "bookMyBook"
+            BookMyBookDatabase::class.java, "bookMyBook"
         ).build()
 
         binding.bottomNavigationView.setOnItemSelectedListener {
