@@ -1,4 +1,4 @@
-package com.lpodev.bookmybook.fragments.list
+package com.lpodev.bookmybook.fragments.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,19 +6,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.lpodev.bookmybook.R
 import com.lpodev.bookmybook.data.Book
-import com.lpodev.bookmybook.databinding.CardCellBinding
+import com.lpodev.bookmybook.databinding.BookCellBinding
 
-class CardAdapter : RecyclerView.Adapter<CardViewHolder>() {
+class BookListAdapter : RecyclerView.Adapter<BookListViewHolder>() {
     private var bookList = emptyList<Book>()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookListViewHolder {
         val from = LayoutInflater.from(parent.context)
-        val binding = CardCellBinding.inflate(from, parent, false)
-        return CardViewHolder(binding)
+        val binding = BookCellBinding.inflate(from, parent, false)
+        return BookListViewHolder(binding)
     }
 
     override fun getItemCount(): Int = bookList.size
 
-    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BookListViewHolder, position: Int) {
         val currentItem = bookList[position]
         holder.itemView.findViewById<TextView>(R.id.title).text = currentItem.title.toString()
         holder.itemView.findViewById<TextView>(R.id.author).text = currentItem.title.toString()

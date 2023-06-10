@@ -2,28 +2,26 @@ package com.lpodev.bookmybook
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.room.Room
 import com.lpodev.bookmybook.data.BookDatabase
 import com.lpodev.bookmybook.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager;
-        val fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(findViewById(R.id.toolbar))
+
+        setSupportActionBar(binding.toolbar)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
+
+        setupActionBarWithNavController(navController)
 
         val db = Room.databaseBuilder(
             applicationContext,
@@ -38,5 +36,9 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/addBookFragment"
         android:name="com.lpodev.bookmybook.fragments.add.AddBookFragment"
-        android:label="fragment_add_book"
+        android:label="Ajouter un livre"
         tools:layout="@layout/fragment_add_book">
         <action
             android:id="@+id/action_addBookFragment_to_searchFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.lpodev.bookmybook.fragments.search.SearchFragment"
-        android:label="fragment_search"
+        android:label="Chercher"
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_addBookFragment"
@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.lpodev.bookmybook.fragments.list.ListFragment"
-        android:label="fragment_home"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_searchFragment2"
@@ -38,7 +38,7 @@
     <fragment
         android:id="@+id/scanFragment"
         android:name="com.lpodev.bookmybook.ScanFragment"
-        android:label="fragment_scan"
+        android:label="Scan"
         tools:layout="@layout/fragment_scan" >
         <action
             android:id="@+id/action_scanFragment_to_listFragment2"
