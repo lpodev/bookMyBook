@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.list.ListFragment">
+    tools:context=".fragments.list.ListFragment"
+    android:theme="@style/Theme.BookMyBook">
 
     <LinearLayout
         android:layout_width="match_parent"
