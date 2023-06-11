@@ -23,7 +23,7 @@ abstract class BookMyBookDatabase : RoomDatabase() {
                 val instance = androidx.room.Room.databaseBuilder(
                     context.applicationContext,
                     BookMyBookDatabase::class.java,
-                    "book_database"
+                    "bmb_database"
                 ).build()
                 INSTANCE = instance
                 return instance
