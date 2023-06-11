@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.lpodev.bookmybook.fragments.search.SearchFragment"
-        android:label="Chercher"
-        tools:layout="@layout/fragment_search">
+        android:name="com.lpodev.bookmybook.fragments.search.LibraryFragment"
+        android:label="Rechercher"
+        tools:layout="@layout/fragment_library">
         <action
             android:id="@+id/action_searchFragment_to_addBookFragment"
             app:destination="@id/addBookFragment" />
@@ -38,7 +38,7 @@
     <fragment
         android:id="@+id/scanFragment"
         android:name="com.lpodev.bookmybook.ScanFragment"
-        android:label="Scan"
+        android:label="Scanner"
         tools:layout="@layout/fragment_scan" >
         <action
             android:id="@+id/action_scanFragment_to_listFragment2"

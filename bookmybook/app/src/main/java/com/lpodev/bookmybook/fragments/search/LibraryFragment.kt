@@ -15,7 +15,7 @@ import com.lpodev.bookmybook.R
 import com.lpodev.bookmybook.data.BookViewModel
 import androidx.lifecycle.Observer
 
-class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
+class LibraryFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var mBookViewModel: BookViewModel
     private lateinit var recyclerViewAdapter : BookListAdapter
 
@@ -23,7 +23,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_search, container, false) 
+        val view = inflater.inflate(R.layout.fragment_library, container, false)
 
         val floatingActionButton = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
         floatingActionButton.setOnClickListener {

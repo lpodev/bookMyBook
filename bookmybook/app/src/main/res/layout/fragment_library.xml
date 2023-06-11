@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.BookMyBook"
-    tools:context=".fragments.search.SearchFragment">
+    tools:context=".fragments.search.LibraryFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -53,7 +53,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/booksRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp">
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>

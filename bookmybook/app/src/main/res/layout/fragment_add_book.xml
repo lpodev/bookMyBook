@@ -4,88 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    tools:context=".fragments.add.AddBookFragment"
-    android:theme="@style/Theme.BookMyBook">
+    android:theme="@style/Theme.BookMyBook"
+    tools:context=".fragments.add.AddBookFragment">
 
-    <EditText
-        android:id="@+id/bookTitle_et"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:autofillHints="bookTitle"
-        android:ems="10"
-        android:fontFamily="@font/inter"
-        android:hint="@string/title_form_hint"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/lighterGrey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/bookAuthor_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:autofillHints="bookAuthor"
-        android:ems="10"
-        android:fontFamily="@font/inter"
-        android:hint="@string/author_form_hint"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/lighterGrey"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookTitle_et" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/bookIsbn_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:autofillHints="bookISBN"
-        android:ems="10"
-        android:fontFamily="@font/inter"
-        android:hint="@string/isbn_form_hint"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/lighterGrey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookAuthor_et" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/informations_form_pholder"
+            android:textSize="20sp"/>
 
-    <EditText
-        android:id="@+id/bookBitmapUrl_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textUri"
-        android:fontFamily="@font/inter"
-        android:hint="@string/url_image_form_hint"
-        android:minHeight="48dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/lighterGrey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookIsbn_et"
-        android:autofillHints="bookImageUrl" />
+        <EditText
+            android:id="@+id/bookTitle_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="bookTitle"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/title_form_hint"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/lighterGrey"/>
 
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/btn_primary"
-        android:text="@string/save_form_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookBitmapUrl_et" />
+        <EditText
+            android:id="@+id/bookAuthor_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="bookAuthor"
+            android:ems="10"
+            android:hint="@string/author_form_hint"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/lighterGrey"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/bookIsbn_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="bookISBN"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/isbn_form_hint"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/lighterGrey" />
+
+        <EditText
+            android:id="@+id/bookBitmapUrl_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="bookImageUrl"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/url_image_form_hint"
+            android:inputType="textUri"
+            android:minHeight="48dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/lighterGrey" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn_primary"
+            android:text="@string/save_form_button"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
