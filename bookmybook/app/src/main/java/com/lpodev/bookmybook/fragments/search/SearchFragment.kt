@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,8 +15,10 @@ import com.lpodev.bookmybook.R
 import com.lpodev.bookmybook.data.BookViewModel
 import androidx.lifecycle.Observer
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var mBookViewModel: BookViewModel
+    private lateinit var recyclerViewAdapter : BookListAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +32,10 @@ class SearchFragment : Fragment() {
 
         val adapter = BookListAdapter()
         val recyclerView = view.findViewById<RecyclerView>(R.id.booksRecyclerView)
+        val search = view.findViewById<SearchView>(R.id.search_bar)
+
+        search.setOnQueryTextListener(this)
+        recyclerViewAdapter = adapter
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -39,5 +46,29 @@ class SearchFragment : Fragment() {
         })
 
         return view
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null){
+            searchBookInDatabase(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (query != null){
+            searchBookInDatabase(query)
+        }
+        return true
+    }
+
+    private fun searchBookInDatabase(query: String?){
+        val searchQuery = "%$query%"
+
+        mBookViewModel.searchBook(searchQuery).observe(this) { list ->
+            list.let {
+                recyclerViewAdapter.setData(it)
+            }
+        }
     }
 }

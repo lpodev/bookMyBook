@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.URLUtil
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -54,12 +55,14 @@ class AddBookFragment : Fragment() {
                 mBookViewModel.addBook(book)
             }
 
-
-
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_addBookFragment_to_searchFragment)
         } else {
-            Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_LONG)
+            Toast.makeText(
+                requireContext(),
+                "Please fill out all fields correctly.",
+                Toast.LENGTH_LONG
+            )
                 .show()
         }
     }
@@ -70,9 +73,9 @@ class AddBookFragment : Fragment() {
         isbn: String,
         bookBitmapUrl: String
     ): Boolean {
-        return !(TextUtils.isEmpty(title) && TextUtils.isEmpty(author) && TextUtils.isEmpty(isbn) && TextUtils.isEmpty(
+        return !(TextUtils.isEmpty(title) || TextUtils.isEmpty(author) || TextUtils.isEmpty(isbn) || TextUtils.isEmpty(
             bookBitmapUrl
-        ))
+        ) || !URLUtil.isValidUrl(bookBitmapUrl))
     }
 
     private suspend fun getBitmap(imageUrl: String): Bitmap {

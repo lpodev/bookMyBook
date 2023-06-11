@@ -15,5 +15,5 @@
     <string name="add_book_fb">Ajouter un livre</string>
     <string name="save_form_button">Enregistrer</string>
     <string name="url_image_form_hint">URL Image</string>
-    <string name="search_bar_hint">Quel livre cherchez vous ?</string>
+    <string name="search_bar_hint">Quel livre recherchez-vous ?</string>
 </resources>
