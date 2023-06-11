@@ -47,7 +47,8 @@
                 android:queryHint="@string/search_bar_hint"
                 android:theme="@style/CustomSearchView"
                 android:iconifiedByDefault="false"
-                style="@style/SearchViewTextStyle"/>
+                style="@style/SearchViewTextStyle"
+                android:background="@color/lighterBlack"/>
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView

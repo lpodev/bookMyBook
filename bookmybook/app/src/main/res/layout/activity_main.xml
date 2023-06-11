@@ -51,5 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu"
-        app:itemBackground="@android:color/transparent"/>
+        app:itemBackground="@color/black"
+        android:elevation="10dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

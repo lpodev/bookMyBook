@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.lpodev.bookmybook.fragments.search.LibraryFragment"
-        android:label="Rechercher"
+        android:label="Votre bibliothèque"
         tools:layout="@layout/fragment_library">
         <action
             android:id="@+id/action_searchFragment_to_addBookFragment"

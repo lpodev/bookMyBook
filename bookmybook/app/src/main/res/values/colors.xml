@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#191414</color>
+    <color name="body_background">#191616</color>
     <color name="white">#FFFFFF</color>
     <color name="lighterBlack">#212121</color>
     <color name="grey">#222</color>
