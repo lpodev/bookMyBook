@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.navigation_home -> navController.navigate(R.id.listFragment)
                 R.id.navigation_scan -> navController.navigate(R.id.scanFragment)
-                R.id.navigation_search -> navController.navigate(R.id.searchFragment)
+                R.id.navigation_library -> navController.navigate(R.id.libraryFragment)
             }
             true
         }

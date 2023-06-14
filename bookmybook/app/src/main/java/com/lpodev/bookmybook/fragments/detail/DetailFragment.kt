@@ -1,4 +1,4 @@
-package com.lpodev.bookmybook
+package com.lpodev.bookmybook.fragments.detail
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
-import com.lpodev.bookmybook.models.Book
+import com.lpodev.bookmybook.R
 import com.lpodev.bookmybook.viewmodels.BookViewModel
 import java.lang.Exception
 
@@ -43,7 +43,6 @@ class DetailFragment : Fragment() {
     }
 
     private fun deleteBook() {
-        print("coucou")
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Supprimer ${args.currentBook.title} ?")
         builder.setMessage("Voulez-vous vraiment supprimer ${args.currentBook.title} ?")

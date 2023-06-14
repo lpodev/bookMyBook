@@ -9,6 +9,6 @@
         android:id="@+id/navigation_scan"
         android:icon="@drawable/ic_scan"/>
     <item android:title="@string/search"
-        android:id="@+id/navigation_search"
+        android:id="@+id/navigation_library"
         android:icon="@drawable/ic_search"/>
 </menu>

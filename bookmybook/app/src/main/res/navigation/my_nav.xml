@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_add_book">
         <action
             android:id="@+id/action_addBookFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/libraryFragment" />
     </fragment>
     <fragment
-        android:id="@+id/searchFragment"
+        android:id="@+id/libraryFragment"
         android:name="com.lpodev.bookmybook.fragments.library.LibraryFragment"
         android:label="Votre bibliothèque"
         tools:layout="@layout/fragment_library">
@@ -33,14 +33,14 @@
         tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_searchFragment2"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/libraryFragment" />
         <action
             android:id="@+id/action_listFragment_to_scanFragment2"
             app:destination="@id/scanFragment" />
     </fragment>
     <fragment
         android:id="@+id/scanFragment"
-        android:name="com.lpodev.bookmybook.ScanFragment"
+        android:name="com.lpodev.bookmybook.fragments.scan.ScanFragment"
         android:label="Scanner"
         tools:layout="@layout/fragment_scan" >
         <action
@@ -48,16 +48,16 @@
             app:destination="@id/listFragment" />
         <action
             android:id="@+id/action_scanFragment_to_searchFragment2"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/libraryFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.lpodev.bookmybook.DetailFragment"
+        android:name="com.lpodev.bookmybook.fragments.detail.DetailFragment"
         android:label="@string/details_header"
         tools:layout="@layout/fragment_details" >
         <action
             android:id="@+id/action_detailFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/libraryFragment" />
         <argument
             android:name="currentBook"
             app:argType="com.lpodev.bookmybook.models.Book" />
