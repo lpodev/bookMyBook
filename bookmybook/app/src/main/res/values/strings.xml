@@ -9,12 +9,12 @@
     <string name="cover">Cover</string>
     <string name="title_place_holder">Title Place Holder</string>
     <string name="author_place_holder">Author Place Holder</string>
-    <string name="isbn_form_hint">ISBN</string>
-    <string name="author_form_hint">Auteur</string>
-    <string name="title_form_hint">Titre</string>
+    <string name="isbn_form_hint">ISBN*</string>
+    <string name="author_form_hint">Auteur*</string>
+    <string name="title_form_hint">Titre*</string>
     <string name="add_book_fb">Ajouter un livre</string>
     <string name="save_form_button">Enregistrer</string>
-    <string name="url_image_form_hint">Url Image</string>
+    <string name="url_image_form_hint">Url cover</string>
     <string name="search_bar_hint">Quel livre recherchez-vous ?</string>
     <string name="informations_form_pholder">Informations</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -24,4 +24,5 @@
     <string name="description_place_holder">Description Place Holder</string>
     <string name="details_header">Détails</string>
     <string name="isbn_place_holder">ISBN Place Holder</string>
+    <string name="description_form_hint">Description</string>
 </resources>

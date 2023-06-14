@@ -16,4 +16,8 @@ class BookRepository(private val bookDao: BookDao) {
         return bookDao.searchBook(searchQuery)
     }
 
+    suspend fun deleteBook(book: Book){
+        bookDao.deleteBook(book)
+    }
+
 }

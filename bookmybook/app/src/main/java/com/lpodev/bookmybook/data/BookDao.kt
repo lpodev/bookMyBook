@@ -2,6 +2,7 @@ package com.lpodev.bookmybook.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -18,4 +19,7 @@ interface BookDao {
 
     @Query("SELECT * FROM books_table WHERE title LIKE :searchQuery OR author LIKE :searchQuery OR isbn LIKE :searchQuery")
     fun searchBook(searchQuery: String): LiveData<List<Book>>
+
+    @Delete
+    suspend fun deleteBook(book: Book)
 }

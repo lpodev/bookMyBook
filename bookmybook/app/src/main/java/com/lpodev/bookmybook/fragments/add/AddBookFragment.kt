@@ -59,12 +59,12 @@ class AddBookFragment : Fragment() {
                 mBookViewModel.addBook(book)
             }
 
-            Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Ajouté avec succès !", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_addBookFragment_to_searchFragment)
         } else {
             Toast.makeText(
                 requireContext(),
-                "Please fill out all fields correctly.",
+                "Veuillez remplir correctement tous les champs.",
                 Toast.LENGTH_LONG
             )
                 .show()
@@ -78,7 +78,7 @@ class AddBookFragment : Fragment() {
         bookBitmapUrl: String
     ): Boolean {
         if (TextUtils.isEmpty(bookBitmapUrl) || URLUtil.isValidUrl(bookBitmapUrl)){
-            Toast.makeText(requireContext(), "Cover not found.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Couverture non trouvée.", Toast.LENGTH_SHORT).show()
         }
         return !(TextUtils.isEmpty(title) || TextUtils.isEmpty(author) || TextUtils.isEmpty(isbn))
     }

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController)
 
-        val db = Room.databaseBuilder(
+        Room.databaseBuilder(
             applicationContext,
             BookMyBookDatabase::class.java, "bookMyBook"
         ).build()

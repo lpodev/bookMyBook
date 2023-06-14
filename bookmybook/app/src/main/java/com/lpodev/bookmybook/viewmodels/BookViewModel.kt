@@ -29,4 +29,10 @@ class BookViewModel(application : Application) : AndroidViewModel(application) {
     fun searchBook(searchQuery: String) : LiveData<List<Book>> {
         return repository.searchBook(searchQuery)
     }
+
+    fun deleteBook(book: Book){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteBook(book)
+        }
+    }
 }
