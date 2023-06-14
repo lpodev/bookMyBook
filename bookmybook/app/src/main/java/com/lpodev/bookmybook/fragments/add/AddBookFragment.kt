@@ -77,9 +77,10 @@ class AddBookFragment : Fragment() {
         isbn: String,
         bookBitmapUrl: String
     ): Boolean {
-        return !(TextUtils.isEmpty(title) || TextUtils.isEmpty(author) || TextUtils.isEmpty(isbn) || TextUtils.isEmpty(
-            bookBitmapUrl
-        ) || !URLUtil.isValidUrl(bookBitmapUrl))
+        if (TextUtils.isEmpty(bookBitmapUrl) || URLUtil.isValidUrl(bookBitmapUrl)){
+            Toast.makeText(requireContext(), "Cover not found.", Toast.LENGTH_SHORT).show()
+        }
+        return !(TextUtils.isEmpty(title) || TextUtils.isEmpty(author) || TextUtils.isEmpty(isbn))
     }
 
     private suspend fun getBitmap(imageUrl: String): Bitmap {
@@ -87,11 +88,11 @@ class AddBookFragment : Fragment() {
         val request = ImageRequest.Builder(requireContext())
             .data(imageUrl)
             .build()
-        try {
+        return try {
             val result = (loading.execute(request) as SuccessResult).drawable
-            return (result as BitmapDrawable).bitmap
+            (result as BitmapDrawable).bitmap
         }catch (e: Exception){
-            return getLocalAssetBitmap()
+            getLocalAssetBitmap()
         }
     }
 
