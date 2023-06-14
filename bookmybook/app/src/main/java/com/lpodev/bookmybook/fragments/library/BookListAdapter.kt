@@ -30,7 +30,7 @@ class BookListAdapter(
         holder.itemView.findViewById<ImageView>(R.id.cover).load(currentItem.cover)
 
         holder.itemView.findViewById<CardView>(R.id.bookCell).setOnClickListener{
-            val action = LibraryFragmentDirections.actionSearchFragmentToDetailFragment(currentItem)
+            val action = LibraryFragmentDirections.actionLibraryFragmentToDetailFragment(currentItem)
             holder.itemView.findNavController().navigate(action)
         }
     }

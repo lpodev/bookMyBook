@@ -60,7 +60,7 @@ class AddBookFragment : Fragment() {
             }
 
             Toast.makeText(requireContext(), "Ajouté avec succès !", Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.action_addBookFragment_to_searchFragment)
+            findNavController().navigate(R.id.action_addBookFragment_to_libraryFragment)
         } else {
             Toast.makeText(
                 requireContext(),

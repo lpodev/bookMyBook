@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
@@ -31,6 +33,7 @@ class ScanFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var barcodeScanner: BarcodeScanner
     private var isAlertShown = false
+    private var isScanningEnabled = true
 
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
 
@@ -72,17 +75,18 @@ class ScanFragment : Fragment() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
         cameraProviderFuture.addListener({
-            val options = BarcodeScannerOptions.Builder().setBarcodeFormats(
-                Barcode.FORMAT_EAN_13
-            ).build()
+            val options = BarcodeScannerOptions.Builder()
+                .setBarcodeFormats(Barcode.FORMAT_EAN_13)
+                .enableAllPotentialBarcodes()
+                .build()
+
             // getClient() creates a new instance of the MLKit barcode scanner with the specified options
             val scanner = BarcodeScanning.getClient(options)
 
-// setting up the analysis use case
-            val analysisUseCase = ImageAnalysis.Builder()
-                .build()
+            // setting up the analysis use case
+            val analysisUseCase = ImageAnalysis.Builder().build()
 
-// define the actual functionality of our analysis use case
+            // define the actual functionality of our analysis use case
             analysisUseCase.setAnalyzer(
                 // newSingleThreadExecutor() will let us perform analysis on a single worker thread
                 Executors.newSingleThreadExecutor()
@@ -114,8 +118,15 @@ class ScanFragment : Fragment() {
         imageProxy.image?.let { image ->
             val inputImage = InputImage.fromMediaImage(image, imageProxy.imageInfo.rotationDegrees)
             barcodeScanner.process(inputImage)
-                .addOnSuccessListener { barcodeList ->
-                    val barcode = barcodeList.getOrNull(0)
+                .addOnSuccessListener { barcodes ->
+                    // Process the detected barcodes
+                    for (barcode in barcodes) {
+                        val rawValue = barcode.rawValue
+                        // Handle the barcode value as needed
+                        if (rawValue != ""){
+                            showBarcodeResult(rawValue)
+                        }
+                    }
                 }.addOnCompleteListener {
                     imageProxy.image?.close()
                     imageProxy.close()
@@ -123,17 +134,28 @@ class ScanFragment : Fragment() {
         }
     }
 
-    private fun showBarcodeResult(barcode: Barcode?) {
+    private fun showBarcodeResult(barcode: String?) {
         if (!isAlertShown) {
+            isAlertShown = true // Set the flag to indicate that the alert is shown
+            isScanningEnabled = false // Disable scanning while the alert is shown
+
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Barcode Scanned")
-            builder.setMessage(barcode?.rawValue)
-            builder.setPositiveButton("OK", null)
-            builder.setOnDismissListener {
-                isAlertShown = false
+            builder.setTitle("Rechercher l'ISBN: $barcode ?")
+            builder.setMessage(barcode)
+            builder.setPositiveButton("Oui") { dialog, _ ->
+                dialog.dismiss()
+                val action = ScanFragmentDirections.actionScanFragmentToLibraryFragment(barcode)
+                findNavController().navigate(action)
             }
-            builder.show()
-            isAlertShown = true
+            builder.setNegativeButton("Non") { dialog, _ ->
+                dialog.dismiss()
+                isAlertShown = false
+                isScanningEnabled = true
+            }
+            val alertDialog = builder.create()
+
+            // Show the alert dialog
+            alertDialog.show()
         }
     }
 

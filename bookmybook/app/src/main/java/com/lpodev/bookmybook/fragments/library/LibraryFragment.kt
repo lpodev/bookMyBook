@@ -17,7 +17,7 @@ import androidx.lifecycle.Observer
 
 class LibraryFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var mBookViewModel: BookViewModel
-    private lateinit var recyclerViewAdapter : BookListAdapter
+    private lateinit var recyclerViewAdapter: BookListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,44 +25,54 @@ class LibraryFragment : Fragment(), SearchView.OnQueryTextListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_library, container, false)
 
-        val floatingActionButton = view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        val floatingActionButton =
+            view.findViewById<FloatingActionButton>(R.id.floatingActionButton)
         floatingActionButton.setOnClickListener {
-            findNavController().navigate(R.id.action_searchFragment_to_addBookFragment)
+            findNavController().navigate(R.id.action_libraryFragment_to_addBookFragment)
         }
+
+        val searchQuery = LibraryFragmentArgs.fromBundle(requireArguments()).searchQuery
+
 
         val adapter = BookListAdapter()
         val recyclerView = view.findViewById<RecyclerView>(R.id.booksRecyclerView)
         val search = view.findViewById<SearchView>(R.id.search_bar)
 
         search.setOnQueryTextListener(this)
+
+
+
         recyclerViewAdapter = adapter
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         mBookViewModel = ViewModelProvider(this)[BookViewModel::class.java]
-        mBookViewModel.readAllData.observe(viewLifecycleOwner, Observer {book ->
+        mBookViewModel.readAllData.observe(viewLifecycleOwner, Observer { book ->
             adapter.setData(book)
         })
 
+        if (searchQuery != null && searchQuery != "") {
+            search.setQuery(searchQuery, false)
+        }
         return view
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if (query != null){
+        if (query != null) {
             searchBookInDatabase(query)
         }
         return true
     }
 
     override fun onQueryTextChange(query: String?): Boolean {
-        if (query != null){
+        if (query != null) {
             searchBookInDatabase(query)
         }
         return true
     }
 
-    private fun searchBookInDatabase(query: String?){
+    private fun searchBookInDatabase(query: String?) {
         val searchQuery = "%$query%"
 
         mBookViewModel.searchBook(searchQuery).observe(this) { list ->
