@@ -1,10 +1,12 @@
-package com.lpodev.bookmybook.data
+package com.lpodev.bookmybook.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
+import com.lpodev.bookmybook.models.Book
+import com.lpodev.bookmybook.data.BookMyBookDatabase
+import com.lpodev.bookmybook.repositories.BookRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

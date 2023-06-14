@@ -1,6 +1,7 @@
 package com.lpodev.bookmybook.fragments.add
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.text.TextUtils
@@ -19,9 +20,12 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.lpodev.bookmybook.R
-import com.lpodev.bookmybook.data.Book
-import com.lpodev.bookmybook.data.BookViewModel
+import com.lpodev.bookmybook.models.Book
+import com.lpodev.bookmybook.viewmodels.BookViewModel
 import kotlinx.coroutines.launch
+import java.io.IOException
+import java.io.InputStream
+import java.lang.Exception
 
 class AddBookFragment : Fragment() {
     private lateinit var mBookViewModel: BookViewModel
@@ -83,8 +87,23 @@ class AddBookFragment : Fragment() {
         val request = ImageRequest.Builder(requireContext())
             .data(imageUrl)
             .build()
-
-        val result = (loading.execute(request) as SuccessResult).drawable
-        return (result as BitmapDrawable).bitmap
+        try {
+            val result = (loading.execute(request) as SuccessResult).drawable
+            return (result as BitmapDrawable).bitmap
+        }catch (e: Exception){
+            return getLocalAssetBitmap()
+        }
     }
+
+    private fun getLocalAssetBitmap(): Bitmap {
+        val assetManager = requireContext().assets
+        val inputStream: InputStream
+        try {
+            inputStream = assetManager.open("missing_cover.jpg")
+            return BitmapFactory.decodeStream(inputStream)
+        } catch (e: IOException) {
+            throw e
+        }
+    }
+
 }

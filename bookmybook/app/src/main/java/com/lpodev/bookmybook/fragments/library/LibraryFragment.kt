@@ -1,4 +1,4 @@
-package com.lpodev.bookmybook.fragments.search
+package com.lpodev.bookmybook.fragments.library
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.lpodev.bookmybook.R
-import com.lpodev.bookmybook.data.BookViewModel
+import com.lpodev.bookmybook.viewmodels.BookViewModel
 import androidx.lifecycle.Observer
 
 class LibraryFragment : Fragment(), SearchView.OnQueryTextListener {

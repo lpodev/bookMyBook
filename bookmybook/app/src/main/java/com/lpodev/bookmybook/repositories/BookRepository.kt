@@ -1,6 +1,8 @@
-package com.lpodev.bookmybook.data
+package com.lpodev.bookmybook.repositories
 
 import androidx.lifecycle.LiveData
+import com.lpodev.bookmybook.models.Book
+import com.lpodev.bookmybook.data.BookDao
 
 class BookRepository(private val bookDao: BookDao) {
 

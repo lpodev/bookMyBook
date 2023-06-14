@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.lpodev.bookmybook.models.Book
 
 @Dao
 interface BookDao {

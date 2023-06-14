@@ -1,11 +1,11 @@
-package com.lpodev.bookmybook.fragments.search
+package com.lpodev.bookmybook.fragments.library
 
 import androidx.recyclerview.widget.RecyclerView
-import com.lpodev.bookmybook.data.Book
+import com.lpodev.bookmybook.models.Book
 import com.lpodev.bookmybook.databinding.BookCellBinding
 
 class BookListViewHolder(
-    private val bookCellBinding: BookCellBinding
+    private val bookCellBinding: BookCellBinding,
 ) : RecyclerView.ViewHolder(bookCellBinding.root) {
     fun bind(book: Book) {
         bookCellBinding.title.text = book.title

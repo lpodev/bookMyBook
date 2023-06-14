@@ -17,4 +17,11 @@
     <string name="url_image_form_hint">Url Image</string>
     <string name="search_bar_hint">Quel livre recherchez-vous ?</string>
     <string name="informations_form_pholder">Informations</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delete_button">Supprimer</string>
+    <string name="loan_button">Prêter</string>
+    <string name="description_place_holder">Description Place Holder</string>
+    <string name="details_header">Détails</string>
+    <string name="isbn_place_holder">ISBN Place Holder</string>
 </resources>
