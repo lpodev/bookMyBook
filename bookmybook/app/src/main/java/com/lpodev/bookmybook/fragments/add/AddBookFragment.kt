@@ -51,21 +51,30 @@ class AddBookFragment : Fragment() {
         val bookAuthor = view?.findViewById<EditText>(R.id.bookAuthor_et)?.text.toString()
         val bookIsbn = view?.findViewById<EditText>(R.id.bookIsbn_et)?.text.toString()
         val bookBitmapUrl = view?.findViewById<EditText>(R.id.bookBitmapUrl_et)?.text.toString()
+        val bookDescription = view?.findViewById<EditText>(R.id.bookDescription_et)?.text.toString()
 
         if (inputChecker(bookTitle, bookAuthor, bookIsbn, bookBitmapUrl)) {
 
-            lifecycleScope.launch {
-                val book = Book(0, getBitmap(bookBitmapUrl), bookTitle, bookAuthor, bookIsbn)
+            val job = lifecycleScope.launch {
+                val book = Book(
+                    0,
+                    getBitmap(bookBitmapUrl),
+                    bookTitle,
+                    bookAuthor,
+                    bookIsbn,
+                    bookDescription
+                )
                 mBookViewModel.addBook(book)
             }
-
-            Toast.makeText(requireContext(), "Ajouté avec succès !", Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.action_addBookFragment_to_libraryFragment)
+            job.invokeOnCompletion {
+                Toast.makeText(requireContext(), "Ajouté avec succès !", Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
+            }
         } else {
             Toast.makeText(
                 requireContext(),
                 "Veuillez remplir correctement tous les champs.",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             )
                 .show()
         }
@@ -77,7 +86,7 @@ class AddBookFragment : Fragment() {
         isbn: String,
         bookBitmapUrl: String
     ): Boolean {
-        if (TextUtils.isEmpty(bookBitmapUrl) || URLUtil.isValidUrl(bookBitmapUrl)){
+        if (TextUtils.isEmpty(bookBitmapUrl) && !URLUtil.isValidUrl(bookBitmapUrl)) {
             Toast.makeText(requireContext(), "Couverture non trouvée.", Toast.LENGTH_SHORT).show()
         }
         return !(TextUtils.isEmpty(title) || TextUtils.isEmpty(author) || TextUtils.isEmpty(isbn))
@@ -91,7 +100,7 @@ class AddBookFragment : Fragment() {
         return try {
             val result = (loading.execute(request) as SuccessResult).drawable
             (result as BitmapDrawable).bitmap
-        }catch (e: Exception){
+        } catch (e: Exception) {
             getLocalAssetBitmap()
         }
     }

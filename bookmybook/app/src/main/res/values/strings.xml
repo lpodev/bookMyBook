@@ -2,10 +2,10 @@
     <string name="app_name">Book My Book</string>
     <string name="hello">Bonjour</string>
     <string name="your_loans">Vos prêts</string>
-    <string name="scan">Scan</string>
+    <string name="scan">Scanner</string>
     <string name="books">Livres</string>
     <string name="home">Home</string>
-    <string name="search">Chercher</string>
+    <string name="library">Librairie</string>
     <string name="cover">Cover</string>
     <string name="title_place_holder">Title Place Holder</string>
     <string name="author_place_holder">Author Place Holder</string>
@@ -23,10 +23,5 @@
     <string name="details_header">Détails</string>
     <string name="isbn_place_holder">ISBN Place Holder</string>
     <string name="description_form_hint">Description</string>
-
-    <!-- TODO: Change this -->
-    <string name="take_photo">Take Photo</string>
-    <string name="start_capture">Start Capture</string>
-    <string name="stop_capture">Stop Capture</string>
     <string name="how_to_scan">Scannez un livre pour le rechercher.</string>
 </resources>

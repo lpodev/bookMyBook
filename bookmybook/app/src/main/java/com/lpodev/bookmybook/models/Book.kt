@@ -13,11 +13,13 @@ data class Book(
     val cover: Bitmap?,
     val title: String?,
     val author: String?,
-    val isbn: String?
+    val isbn: String?,
+    val description: String?,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readParcelable(Bitmap::class.java.classLoader),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
@@ -30,6 +32,7 @@ data class Book(
         parcel.writeString(title)
         parcel.writeString(author)
         parcel.writeString(isbn)
+        parcel.writeString(description)
     }
 
     override fun describeContents(): Int {

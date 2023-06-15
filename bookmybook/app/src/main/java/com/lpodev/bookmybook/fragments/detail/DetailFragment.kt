@@ -34,6 +34,7 @@ class DetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.title).text = args.currentBook.title
         view.findViewById<TextView>(R.id.author).text = args.currentBook.author
         view.findViewById<TextView>(R.id.isbn).text = args.currentBook.isbn
+        view.findViewById<TextView>(R.id.description).text = args.currentBook.description
 
         view.findViewById<Button>(R.id.deleteButton).setOnClickListener {
             deleteBook()

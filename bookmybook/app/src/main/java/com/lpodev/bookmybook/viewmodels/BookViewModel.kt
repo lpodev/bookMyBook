@@ -3,6 +3,7 @@ package com.lpodev.bookmybook.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.lpodev.bookmybook.models.Book
 import com.lpodev.bookmybook.data.BookMyBookDatabase
@@ -11,13 +12,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class BookViewModel(application : Application) : AndroidViewModel(application) {
-    val readAllData: LiveData<List<Book>>
+    private val _books = MutableLiveData<List<Book>>()
+    val books: LiveData<List<Book>>
+        get() = _books
     private val repository: BookRepository
 
     init {
         val bookDao = BookMyBookDatabase.getDatabase(application).bookDao()
         repository = BookRepository(bookDao)
-        readAllData = repository.readAllData
+        viewModelScope.launch {
+            _books.value = repository.readAllData()
+        }
+
     }
 
     fun addBook(book: Book) {
@@ -26,13 +32,21 @@ class BookViewModel(application : Application) : AndroidViewModel(application) {
         }
     }
 
-    fun searchBook(searchQuery: String) : LiveData<List<Book>> {
-        return repository.searchBook(searchQuery)
+    fun searchBook(searchQuery: String) {
+        viewModelScope.launch {
+            _books.value = repository.searchBook(searchQuery)
+        }
     }
 
     fun deleteBook(book: Book){
         viewModelScope.launch(Dispatchers.IO){
             repository.deleteBook(book)
+        }
+    }
+
+    fun getAllBooks(){
+        viewModelScope.launch(Dispatchers.IO){
+            _books.postValue(repository.readAllData())
         }
     }
 }

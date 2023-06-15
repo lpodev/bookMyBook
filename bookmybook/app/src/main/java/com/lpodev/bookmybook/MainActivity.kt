@@ -2,14 +2,16 @@ package com.lpodev.bookmybook
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.room.Room
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lpodev.bookmybook.data.BookMyBookDatabase
 import com.lpodev.bookmybook.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,27 +20,18 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        setupActionBarWithNavController(navController)
-
         Room.databaseBuilder(
             applicationContext,
             BookMyBookDatabase::class.java, "bookMyBook"
         ).build()
 
-        binding.bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.navigation_home -> navController.navigate(R.id.listFragment)
-                R.id.navigation_scan -> navController.navigate(R.id.scanFragment)
-                R.id.navigation_library -> navController.navigate(R.id.libraryFragment)
-            }
-            true
-        }
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+        bottomNav?.setupWithNavController(navHostFragment.navController)
+        setupActionBarWithNavController(navHostFragment.navController)
     }
+
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return navHostFragment.navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,25 +33,25 @@ class ScanFragment : Fragment() {
     private lateinit var barcodeScanner: BarcodeScanner
     private var isAlertShown = false
     private var isScanningEnabled = true
-
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentScanBinding.inflate(inflater, container, false)
+        cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
-        val cameraView = binding.previewView
         if (hasCameraPermission()) bindCameraUseCases()
         else requestPermission()
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        isAlertShown = false
+        isScanningEnabled = true
     }
 
     private fun hasCameraPermission() =
@@ -71,9 +70,6 @@ class ScanFragment : Fragment() {
     }
 
     private fun bindCameraUseCases() {
-
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-
         cameraProviderFuture.addListener({
             val options = BarcodeScannerOptions.Builder()
                 .setBarcodeFormats(Barcode.FORMAT_EAN_13)
@@ -123,7 +119,7 @@ class ScanFragment : Fragment() {
                     for (barcode in barcodes) {
                         val rawValue = barcode.rawValue
                         // Handle the barcode value as needed
-                        if (rawValue != ""){
+                        if (rawValue != "") {
                             showBarcodeResult(rawValue)
                         }
                     }
@@ -140,11 +136,11 @@ class ScanFragment : Fragment() {
             isScanningEnabled = false // Disable scanning while the alert is shown
 
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Rechercher l'ISBN: $barcode ?")
-            builder.setMessage(barcode)
+            builder.setTitle("Code barres trouvé")
+            builder.setMessage("Souhaitez vous rechercher $barcode ?")
             builder.setPositiveButton("Oui") { dialog, _ ->
                 dialog.dismiss()
-                val action = ScanFragmentDirections.actionScanFragmentToLibraryFragment(barcode)
+                val action = ScanFragmentDirections.actionSearchQuery(barcode)
                 findNavController().navigate(action)
             }
             builder.setNegativeButton("Non") { dialog, _ ->
@@ -175,6 +171,10 @@ class ScanFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        cameraProviderFuture.addListener({
+            val cameraProvider = cameraProviderFuture.get()
+            cameraProvider.unbindAll() // Unbind all camera use cases
+        }, ContextCompat.getMainExecutor(requireContext()))
         _binding = null
     }
 }

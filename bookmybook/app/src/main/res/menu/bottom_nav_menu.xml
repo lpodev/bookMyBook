@@ -5,10 +5,12 @@
     <item android:title="@string/home"
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home" />
+
     <item android:title="@string/scan"
         android:id="@+id/navigation_scan"
         android:icon="@drawable/ic_scan"/>
-    <item android:title="@string/search"
+
+    <item android:title="@string/library"
         android:id="@+id/navigation_library"
         android:icon="@drawable/ic_search"/>
 </menu>

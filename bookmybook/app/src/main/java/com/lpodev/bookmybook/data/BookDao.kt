@@ -1,6 +1,5 @@
 package com.lpodev.bookmybook.data
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -15,10 +14,10 @@ interface BookDao {
     suspend fun addBook(book: Book)
 
     @Query("SELECT * FROM books_table ORDER BY id ASC")
-    fun readAllData(): LiveData<List<Book>>
+    fun readAllData(): List<Book>
 
     @Query("SELECT * FROM books_table WHERE title LIKE :searchQuery OR author LIKE :searchQuery OR isbn LIKE :searchQuery")
-    fun searchBook(searchQuery: String): LiveData<List<Book>>
+    fun searchBook(searchQuery: String): List<Book>
 
     @Delete
     suspend fun deleteBook(book: Book)
