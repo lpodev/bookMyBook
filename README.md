@@ -1,4 +1,6 @@
+<p align="center">
 ![Book My Book logo](logo.png)
+</p>
 
 # Book My Book
 
