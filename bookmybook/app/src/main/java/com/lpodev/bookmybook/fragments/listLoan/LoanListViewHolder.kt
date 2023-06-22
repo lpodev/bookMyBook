@@ -1,15 +1,23 @@
 package com.lpodev.bookmybook.fragments.listLoan
 
+import android.provider.ContactsContract
 import androidx.recyclerview.widget.RecyclerView
-import com.lpodev.bookmybook.databinding.BookCellBinding
-import com.lpodev.bookmybook.models.Book
+import com.lpodev.bookmybook.data.LoanWithBook
+import com.lpodev.bookmybook.databinding.LoanCellBinding
 
 class LoanListViewHolder(
 
-    private val bookCellBinding: BookCellBinding,
-) : RecyclerView.ViewHolder(bookCellBinding.root) {
-    fun bind(book: Book) {
-        bookCellBinding.title.text = book.title
-        bookCellBinding.author.text = book.author
+    private val binding: LoanCellBinding,
+) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(loan: LoanWithBook) {
+        binding.title.text = loan.book.title
+    }
+
+    fun setContactName(contactName: String?) {
+        binding.contactName.text = contactName ?: "Contact not found"
+    }
+
+    fun setDaysToEndDate(daysLeft: Long) {
+        binding.daysToEndDate.text = daysLeft.toString()
     }
 }

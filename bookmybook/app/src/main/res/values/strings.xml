@@ -30,4 +30,6 @@
     <string name="lblDuration">Quelle est la date de fin ?</string>
     <string name="lblBookToLoan">Livre à prêter</string>
     <string name="btnLoan">Prêter</string>
+    <string name="contact_place_holder">Contact Place Holder</string>
+    <string name="days_left">Jour restants</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.lpodev.bookmybook.repositories
 
 import com.lpodev.bookmybook.data.LoanDao
+import com.lpodev.bookmybook.data.LoanWithBook
 import com.lpodev.bookmybook.models.Book
 import com.lpodev.bookmybook.models.Loan
 import kotlinx.coroutines.Dispatchers
@@ -20,5 +21,11 @@ class LoanRepository(private val loanDao: LoanDao) {
 
     suspend fun deleteLoan(loan: Loan) {
         loanDao.deleteLoan(loan)
+    }
+
+    suspend fun getLoansWithBooks(): List<LoanWithBook> {
+        return withContext(Dispatchers.IO) {
+            loanDao.getLoansWithBooks()
+        }
     }
 }

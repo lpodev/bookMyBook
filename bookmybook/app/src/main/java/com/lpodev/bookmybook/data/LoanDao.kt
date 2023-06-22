@@ -20,4 +20,6 @@ interface LoanDao {
     @Delete
     suspend fun deleteLoan(loan: Loan)
 
+    @Query("SELECT loans_table.*, books_table.id AS bookId, books_table.title FROM loans_table INNER JOIN books_table ON loans_table.book_id = books_table.id")
+    suspend fun getLoansWithBooks(): List<LoanWithBook>
 }
