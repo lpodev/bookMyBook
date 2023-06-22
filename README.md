@@ -1,4 +1,7 @@
+![Book My Book logo](logo.png)
+
 # Book My Book
+
 Book My Book est une application Android conçue pour faciliter la gestion des prêts au sein de votre librairie de bouquins. Développée en utilisant le langage Kotlin pendant le module JAV1, elle offre une expérience conviviale et intuitive pour vous aider dans cette tâche.
 
 ## Application
