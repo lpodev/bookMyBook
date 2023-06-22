@@ -48,7 +48,8 @@
                     android:textSize="18sp"
                     android:background="@android:color/transparent"
                     android:gravity="center"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:id="@+id/author"

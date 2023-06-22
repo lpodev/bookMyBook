@@ -1,4 +1,4 @@
-package com.lpodev.bookmybook.fragments.scan
+package com.lpodev.bookmybook.fragments.scanBook
 
 import android.Manifest
 import android.app.AlertDialog

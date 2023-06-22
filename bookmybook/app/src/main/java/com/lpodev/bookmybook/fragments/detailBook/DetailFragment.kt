@@ -1,4 +1,4 @@
-package com.lpodev.bookmybook.fragments.detail
+package com.lpodev.bookmybook.fragments.detailBook
 
 import android.app.AlertDialog
 import android.os.Bundle

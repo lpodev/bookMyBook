@@ -5,11 +5,14 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.lpodev.bookmybook.models.Book
+import com.lpodev.bookmybook.models.Loan
 
-@Database(entities = [Book::class], version = 1, exportSchema = false)
+@Database(entities = [Book::class, Loan::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class BookMyBookDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
+
+    abstract fun loanDao() : LoanDao
 
     companion object {
         @Volatile

@@ -1,4 +1,4 @@
-package com.lpodev.bookmybook.fragments.add
+package com.lpodev.bookmybook.fragments.addBook
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
