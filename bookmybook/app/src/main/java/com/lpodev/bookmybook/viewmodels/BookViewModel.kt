@@ -20,15 +20,13 @@ class BookViewModel(application : Application) : AndroidViewModel(application) {
     init {
         val bookDao = BookMyBookDatabase.getDatabase(application).bookDao()
         repository = BookRepository(bookDao)
-        viewModelScope.launch {
-            _books.value = repository.readAllData()
-        }
-
+        fetchBooks()
     }
 
     fun addBook(book: Book) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addBook(book)
+            _books.postValue(repository.readAllData())
         }
     }
 
@@ -41,12 +39,13 @@ class BookViewModel(application : Application) : AndroidViewModel(application) {
     fun deleteBook(book: Book){
         viewModelScope.launch(Dispatchers.IO){
             repository.deleteBook(book)
+            _books.postValue(repository.readAllData())
         }
     }
 
-    fun getAllBooks(){
-        viewModelScope.launch(Dispatchers.IO){
-            _books.postValue(repository.readAllData())
+    fun fetchBooks(){
+        viewModelScope.launch {
+            _books.value = repository.readAllData()
         }
     }
 }

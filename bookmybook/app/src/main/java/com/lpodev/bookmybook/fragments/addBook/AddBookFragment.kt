@@ -86,7 +86,7 @@ class AddBookFragment : Fragment() {
         isbn: String,
         bookBitmapUrl: String
     ): Boolean {
-        if (TextUtils.isEmpty(bookBitmapUrl) && !URLUtil.isValidUrl(bookBitmapUrl)) {
+        if (bookBitmapUrl.isNotEmpty() && !URLUtil.isValidUrl(bookBitmapUrl)) {
             Toast.makeText(requireContext(), "Couverture non trouvée.", Toast.LENGTH_SHORT).show()
         }
         return !(TextUtils.isEmpty(title) || TextUtils.isEmpty(author) || TextUtils.isEmpty(isbn))
