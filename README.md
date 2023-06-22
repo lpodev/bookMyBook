@@ -1,5 +1,5 @@
 <p align="center">
-![Book My Book logo](logo.png)
+<img width="400" height="400" src="https://github.com/lpodev/bookMyBook/blob/main/logo.png">
 </p>
 
 # Book My Book
