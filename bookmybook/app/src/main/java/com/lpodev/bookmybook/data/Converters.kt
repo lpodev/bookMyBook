@@ -1,12 +1,17 @@
 package com.lpodev.bookmybook.data
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
 import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
+import java.util.Date
 
 class Converters {
+    @SuppressLint("SimpleDateFormat")
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     @TypeConverter
     fun fromBitmap(bitmap: Bitmap): ByteArray{
         val outputStream = ByteArrayOutputStream()
@@ -20,12 +25,12 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromTimestamp(value: String?): LocalDateTime? {
-        return value?.let { LocalDateTime.parse(it) }
+    fun fromDate(date: Date?): String? {
+        return date?.let { dateFormat.format(it) }
     }
 
     @TypeConverter
-    fun dateToTimestamp(date: LocalDateTime?): String? {
-        return date?.toString()
+    fun toDate(dateString: String?): Date? {
+        return dateString?.let { dateFormat.parse(it) }
     }
 }
